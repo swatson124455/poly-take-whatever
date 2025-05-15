@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-set -e
-
-# Bootstrap environment file if missing
-if [ ! -f .env ]; then
+# If .env doesn't exist, copy from example
+if [ ! -f ".env" ]; then
   cp .env.example .env
-  echo "Copied .env.example to .env"
+  echo "Created .env from .env.example"
 fi
 
-# Start the application
-exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}
+# Run migrations or other setup here if needed
+
+# Start the server
+exec uvicorn app.main:app --host 0.0.0.0 --port "${PORT:-8000}"
