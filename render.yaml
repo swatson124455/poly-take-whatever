@@ -1,9 +1,8 @@
+# Render.com spec file
 services:
   - type: web
-    name: poly-take-whatever
+    name: myapp
     env: docker
-    region: oregon
-    branch: main
+    dockerfilePath: Dockerfile
     plan: starter
-    buildCommand: ''
-    startCommand: './entrypoint.sh'
+    autoDeploy: true
