@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
-# If .env is missing but .env.example exists, copy it
-if [ ! -f .env ] && [ -f .env.example ]; then
+set -e
+
+# If .env is missing, copy from example
+if [ ! -f ".env" ]; then
   cp .env.example .env
 fi
 
-uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}
+# Run migrations or other setup here, if needed
+
+# Start the app
+exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}
