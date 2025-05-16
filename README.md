@@ -1,28 +1,17 @@
-# Poly Take Whatever - Render Deploy Fix
+# Deployment Setup
 
-This folder contains the fixed deploy setup:
+This repository is configured for automatic deployment on Render and local Docker use.
 
-## Features
-- Dockerfile no longer fails on missing .env.example
-- Entry-point script loads `.env` if you provide it
-- `.env.example` with a placeholder key
-- Quick start instructions
+## Render
 
-## Quick Start
+1. Connect this repo to Render.
+2. In Render dashboard, set the following Environment Variables:
+   - `WALLET_PRIVATE_KEY` (your Ethereum private key)
+3. Render will build using the `Dockerfile`, and `entrypoint.sh` will generate `.env` from `.env.example`.
+
+## Local
 
 ```bash
-# Build the Docker image
 docker build -t myapp .
-
-# Run locally
-docker run -e PORT=8000 myapp
+docker run -e PORT=8000 -e WALLET_PRIVATE_KEY=your_key_here myapp
 ```
-
-## Render Deployment
-
-1. Push this repo to GitHub.
-2. In Render, create a new **Web Service** pointing to this GitHub repo.
-3. Set the environment variable:
-   - `WALLET_PRIVATE_KEY` = your actual 32-byte private key
-4. Enable **Auto Deploy**.
-5. Done—Render will build and start without extra clicks.
